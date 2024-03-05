@@ -78,3 +78,108 @@ console.log(obj, json, objFromJson);
 // {"a":2, "b":"crockford"}
 // {a: 2, b: 'crockford'}
 ```
+
+<h3>Objects and Classes</h3>
+
+Objects seem to be a crucial part of JavaScript and, similar to maps, use key pairs to hold information. The key of the key pairs <strong>must be of stype String of Symbol</strong> but the value can be any type (including arrays, functions, etc.). Here is an example of an object, notice how different types can be stored in the same object:
+```ruby
+const obj = new Object({ a: 3 });
+obj['b'] = 'fish';
+obj.c = [1, 2, 3];
+obj.hello = function () {
+  console.log('hello');
+};
+
+console.log(obj);
+// OUTPUT: {a: 3, b: 'fish', c: [1,2,3], hello: func}
+```
+There are a few static functions that are important to know/use with objects:
+<ul>
+  <li><strong>entries</strong> -> Returns an array of key value pairs</li>
+  <li><strong>keys</strong> -> Returns an array of keys</li>
+  <li><strong>values</strong> -> Returns an array of (you guessed it) values</li>
+</ul>
+
+```ruby
+const obj = {
+  a: 3,
+  b: 'fish',
+};
+
+console.log(Object.entries(obj));
+// OUTPUT: [['a', 3], ['b', 'fish']]
+console.log(Object.keys(obj));
+// OUTPUT: ['a', 'b']
+console.log(Object.values(obj));
+// OUTPUT: [3, 'fish']
+```
+Constructors are also an important part of objects, any function that returns an object is considered a contructor and can be invoked with the 'new' operator.
+```ruby
+function Person(name) {
+  return {
+    name: name,
+  };
+}
+
+const p = new Person('Eich');
+console.log(p);
+// OUTPUT: {name: 'Eich'}
+```
+You can also create methods on the object as part of the encapsulation (because any type can be in the value). Consider the following:
+```ruby
+function Person(name) {
+  return {
+    name: name,
+    log: function () {
+      console.log('My name is ' + this.name);
+    },
+  };
+}
+
+const p = new Person('Eich');
+p.log();
+// OUTPUT: My name is Eich
+```
+We also need ot look at classes to define objects-this becomes very useful when we want to inherit from parent classes. Consider this example where we have a Person class:
+```ruby
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+
+  log() {
+    console.log('My name is ' + this.name);
+  }
+}
+
+const p = new Person('Eich');
+p.log();
+// OUTPUT: My name is Eich
+```
+When we inherit from the parent, we must use 'super' to access parent's functions or parameters, look at the way Employee inherits from Person:
+```ruby
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+
+  print() {
+    return 'My name is ' + this.name;
+  }
+}
+
+class Employee extends Person {
+  constructor(name, position) {
+    super(name);
+    this.position = position;
+  }
+
+  print() {
+    return super.print() + '. I am a ' + this.position;
+  }
+}
+
+const e = new Employee('Eich', 'programmer');
+console.log(e.print());
+// OUTPUT: My name is Eich. I am a programmer
+```
