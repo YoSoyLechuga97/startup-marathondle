@@ -33,14 +33,14 @@ I think it is valuable to learn some of the flags for the sake of better usage s
 <h3>Rest vs Spread</h3>
 
 JavaScript uses 'rest' to put the remaining variables entered into a function into an array by leading it with three dots (think of it like using the 'rest' of the variables for this).<strong>This can only be done for the last variable of a function</strong> Here's and example:
-
+'''
 function hasNumber(test, ...numbers) {
   return numbers.some((i) => i === test);
 }
 
 hasNumber(2, 1, 2, 3);
 // RETURNS: true
-
+'''
 Spread does the opposite and will take an array and split all of the indexes into seperate varables. Here's and example: 
 
 function person(firstName, lastName) {
