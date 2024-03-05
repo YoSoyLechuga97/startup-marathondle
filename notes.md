@@ -183,3 +183,27 @@ const e = new Employee('Eich', 'programmer');
 console.log(e.print());
 // OUTPUT: My name is Eich. I am a programmer
 ```
+
+<h3>Exceptions</h3>
+
+We can attempt things in JavaScript with the 'try' 'catch' 'throw' and 'finally' methods, these can be used similarly to other languages to attempt things without depending on their success for our code to continue to run, we also want to make sure that we have fallbacks in case things don't work. 
+<ul>
+  <li><strong>try</strong> -> attempt the following code</li>
+  <li><strong>catch</strong> -> if there is an exception, do the following code</li>
+  <li><strong>finally</strong> -> regardless, always do the following code</li>
+  <li><strong>throw</strong> -> trigger an exception when your code generates an exception</li>
+</ul>
+
+Here is an excellent example of using exceptions to load a scoreboard. If, for some reason, the network is unavailable, then the last saved scores will be presented.
+```ruby
+function getScores() {
+  try {
+    const scores = scoringService.getScores();
+    // store the scores so that we can use them later if the network is not available
+    window.localStorage.setItem('scores', scores);
+    return scores;
+  } catch {
+    return window.localStorage.getItem('scores');
+  }
+}
+```
