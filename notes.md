@@ -33,16 +33,16 @@ I think it is valuable to learn some of the flags for the sake of better usage s
 <h3>Rest vs Spread</h3>
 
 JavaScript uses 'rest' to put the remaining variables entered into a function into an array by leading it with three dots (think of it like using the 'rest' of the variables for this).<strong>This can only be done for the last variable of a function</strong> Here's and example:
-'''
+```
 function hasNumber(test, ...numbers) {
   return numbers.some((i) => i === test);
 }
 
 hasNumber(2, 1, 2, 3);
 // RETURNS: true
-'''
+```
 Spread does the opposite and will take an array and split all of the indexes into seperate varables. Here's and example: 
-
+```
 function person(firstName, lastName) {
   return { first: firstName, last: lastName };
 }
@@ -50,11 +50,11 @@ function person(firstName, lastName) {
 const p = person(...['Ryan', 'Dahl']);
 console.log(p);
 // OUTPUT: {first: 'Ryan', last: 'Dahl'}
-
+```
 <h3>JSON</h3>
 
 JSON is a simple and effective way to store and share data. It is a document that can contain either a string, number, boolean, array, object, or be null. It is most notably used to contain objects, they are similar to maps in that they have a key that is paired to a different value. Here is an example of a JSON document:
-
+```
 {
   "class": {
     "title": "web programming",
@@ -64,9 +64,9 @@ JSON is a simple and effective way to store and share data. It is a document tha
   "start": "2025-02-01",
   "end": null
 }
-
+```
 This can be converted to JavaScript using JSON.parse(), and JavaScript can be made into JSON through JSON.parse(), here is an example:
-
+```
 const obj = { a: 2, b: 'crockford', c: undefined };
 const json = JSON.stringify(obj);
 const objFromJson = JSON.parse(json);
@@ -77,3 +77,4 @@ console.log(obj, json, objFromJson);
 // {a: 2, b: 'crockford', c: undefined}
 // {"a":2, "b":"crockford"}
 // {a: 2, b: 'crockford'}
+```
