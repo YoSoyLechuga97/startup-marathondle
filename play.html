@@ -13,14 +13,6 @@
     />
     <link rel="stylesheet" href="play.css"/>
     <title>Marathondle Play</title>
-    <style>
-    input {
-      width: 30px;
-      height: 30px;
-      text-align: center;
-      font-size: 16px;
-    }
-  </style>
   </head>
   
   <body>
@@ -53,116 +45,123 @@
         </div>
         <div class="player-score">
           <label for="currScore">Score</label>
-          <input type="text" id="currScore" value="--" readonly />
+          <input type="text" id="currScore" value="--" size="1" readonly />
         </div>
       </div>
-      <!-- Have a place to show the Correct Answer -->
       
+      <!--Title-->
+      <div class="game-header">
+        <h1>Play Game</h1>
+        <p>Time Elapsed: 00:00</p>
+      </div>
+
       <!-- Create the Marathondle Board (5 x 6) -->
-      <table>
-        <tr class="answer1">
-          <td>
-            <input type="text" maxlength="1" size="1">
-          </td>
-          <td>
-            <input type="text" maxlength="1" size="1">
-          </td>
-          <td>
-            <input type="text" maxlength="1" size="1">
-          </td>
-          <td>
-            <input type="text" maxlength="1" size="1">
-          </td>
-          <td>
-            <input type="text" maxlength="1" size="1">
-          </td>
-        </tr>
-        <tr class="answer2">
-          <td>
-            <input type="text" maxlength="1" size="1">
-          </td>
-          <td>
-            <input type="text" maxlength="1" size="1">
-          </td>
-          <td>
-            <input type="text" maxlength="1" size="1">
-          </td>
-          <td>
-            <input type="text" maxlength="1" size="1">
-          </td>
-          <td>
-            <input type="text" maxlength="1" size="1">
-          </td>
-        </tr>
-        <tr class="answer3">
-          <td>
-            <input type="text" maxlength="1" size="1">
-          </td>
-          <td>
-            <input type="text" maxlength="1" size="1">
-          </td>
-          <td>
-            <input type="text" maxlength="1" size="1">
-          </td>
-          <td>
-            <input type="text" maxlength="1" size="1">
-          </td>
-          <td>
-            <input type="text" maxlength="1" size="1">
-          </td>
-        </tr>
-        <tr class="answer4">
-          <td>
-            <input type="text" maxlength="1" size="1">
-          </td>
-          <td>
-            <input type="text" maxlength="1" size="1">
-          </td>
-          <td>
-            <input type="text" maxlength="1" size="1">
-          </td>
-          <td>
-            <input type="text" maxlength="1" size="1">
-          </td>
-          <td>
-            <input type="text" maxlength="1" size="1">
-          </td>
-        </tr>
-        <tr class="answer5">
-          <td>
-            <input type="text" maxlength="1" size="1">
-          </td>
-          <td>
-            <input type="text" maxlength="1" size="1">
-          </td>
-          <td>
-            <input type="text" maxlength="1" size="1">
-          </td>
-          <td>
-            <input type="text" maxlength="1" size="1">
-          </td>
-          <td>
-            <input type="text" maxlength="1" size="1">
-          </td>
-        </tr>
-        <tr class="answer6">
-          <td>
-            <input type="text" maxlength="1" size="1">
-          </td>
-          <td>
-            <input type="text" maxlength="1" size="1">
-          </td>
-          <td>
-            <input type="text" maxlength="1" size="1">
-          </td>
-          <td>
-            <input type="text" maxlength="1" size="1">
-          </td>
-          <td>
-            <input type="text" maxlength="1" size="1">
-          </td>
-        </tr>
-      </table>
+      <div class="game">
+        <table>
+          <tr class="answer1 curr-answer">
+            <td>
+              <input type="text" maxlength="1" size="1">
+            </td>
+            <td>
+              <input type="text" maxlength="1" size="1">
+            </td>
+            <td>
+              <input type="text" maxlength="1" size="1">
+            </td>
+            <td>
+              <input type="text" maxlength="1" size="1">
+            </td>
+            <td>
+              <input type="text" maxlength="1" size="1">
+            </td>
+          </tr>
+          <tr class="answer2">
+            <td>
+              <input type="text" maxlength="1" size="1">
+            </td>
+            <td>
+              <input type="text" maxlength="1" size="1">
+            </td>
+            <td>
+              <input type="text" maxlength="1" size="1">
+            </td>
+            <td>
+              <input type="text" maxlength="1" size="1">
+            </td>
+            <td>
+              <input type="text" maxlength="1" size="1">
+            </td>
+          </tr>
+          <tr class="answer3">
+            <td>
+              <input type="text" maxlength="1" size="1">
+            </td>
+            <td>
+              <input type="text" maxlength="1" size="1">
+            </td>
+            <td>
+              <input type="text" maxlength="1" size="1">
+            </td>
+            <td>
+              <input type="text" maxlength="1" size="1">
+            </td>
+            <td>
+              <input type="text" maxlength="1" size="1">
+            </td>
+          </tr>
+          <tr class="answer4">
+            <td>
+              <input type="text" maxlength="1" size="1">
+            </td>
+            <td>
+              <input type="text" maxlength="1" size="1">
+            </td>
+            <td>
+              <input type="text" maxlength="1" size="1">
+            </td>
+            <td>
+              <input type="text" maxlength="1" size="1">
+            </td>
+            <td>
+              <input type="text" maxlength="1" size="1">
+            </td>
+          </tr>
+          <tr class="answer5">
+            <td>
+              <input type="text" maxlength="1" size="1">
+            </td>
+            <td>
+              <input type="text" maxlength="1" size="1">
+            </td>
+            <td>
+              <input type="text" maxlength="1" size="1">
+            </td>
+            <td>
+              <input type="text" maxlength="1" size="1">
+            </td>
+            <td>
+              <input type="text" maxlength="1" size="1">
+            </td>
+          </tr>
+          <tr class="answer6">
+            <td>
+              <input type="text" maxlength="1" size="1">
+            </td>
+            <td>
+              <input type="text" maxlength="1" size="1">
+            </td>
+            <td>
+              <input type="text" maxlength="1" size="1">
+            </td>
+            <td>
+              <input type="text" maxlength="1" size="1">
+            </td>
+            <td>
+              <input type="text" maxlength="1" size="1">
+            </td>
+          </tr>
+        </table>
+      </div>
 
       <!-- Restart Game Button -->
       <div class="reset-button">
