@@ -22,9 +22,7 @@ class Game {
 
     constructor() {
         //Generate a new word
-        const randomIndex = Math.floor(Math.random() * wordArray.length);
-        console.log("The index I am accessing is " + randomIndex);
-        this.word = wordArray[randomIndex];
+        this.generateWord();
         console.log("Your current word is " + this.word);
         //Start timer
 
@@ -32,10 +30,18 @@ class Game {
         playerNameEl.textContent = this.getPlayerName();
     }
 
+    generateWord() {
+        const randomIndex = Math.floor(Math.random() * wordArray.length);
+        console.log("The index I am accessing is " + randomIndex);
+        this.word = wordArray[randomIndex];
+        console.log("Your current word is " + this.word);
+    }
+
     getPlayerName() {
         return localStorage.getItem('userName') ?? 'Player Unknown';
     }
 
 }
+
 
 const game = new Game();
