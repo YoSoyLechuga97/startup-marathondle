@@ -18,12 +18,15 @@ let wordArray = [
 
 class Game {
     word;
-    //time;
+    wordCount;    
 
     constructor() {
         //Generate a new word
         this.generateWord();
-        //Start timer
+        //Set counter for number of words solved this run
+        this.wordCount = 0;
+        let wordsSolved = document.querySelector('#wordsSolved')
+        wordsSolved.innerText = this.wordCount;
 
         const playerNameEl = document.querySelector('.player-username');
         playerNameEl.textContent = this.getPlayerName();
@@ -43,7 +46,9 @@ class Game {
 
         //Reset Score
 
-        //Restart Timer
+        //Restart Word Count
+        this.wordCount = 0;
+        wordsSolved.innerText = this.wordCount;
     }
 
     getPlayerName() {
