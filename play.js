@@ -23,7 +23,6 @@ class Game {
     constructor() {
         //Generate a new word
         this.generateWord();
-        console.log("Your current word is " + this.word);
         //Start timer
 
         const playerNameEl = document.querySelector('.player-username');
@@ -35,6 +34,16 @@ class Game {
         console.log("The index I am accessing is " + randomIndex);
         this.word = wordArray[randomIndex];
         console.log("Your current word is " + this.word);
+    }
+
+    resetGame() {
+        //New Word
+        this.generateWord();
+        //Clear Table
+
+        //Reset Score
+
+        //Restart Timer
     }
 
     getPlayerName() {
