@@ -18,15 +18,21 @@ let wordArray = [
 
 class Game {
     word;
-    wordCount;    
+    wordCount;
+    numGuesses;
 
     constructor() {
         //Generate a new word
         this.generateWord();
+        //Generate the table
+        this.freshTable();
         //Set counter for number of words solved this run
         this.wordCount = 0;
         let wordsSolved = document.querySelector('#wordsSolved')
         wordsSolved.innerText = this.wordCount;
+
+        //Set numGuesses for this word
+        this.numGuesses = 0;
 
         const playerNameEl = document.querySelector('.player-username');
         playerNameEl.textContent = this.getPlayerName();
@@ -39,16 +45,126 @@ class Game {
         console.log("Your current word is " + this.word);
     }
 
+    freshTable() {
+        let tbody = document.querySelector("#game-table tbody");
+
+        //Define Each row of table
+        let rowData = [
+            { id: "answer1", classes: "answer1 curr-answer", cells: [
+                {type: "text", maxlength: "1", size: "1"},
+                {type: "text", maxlength: "1", size: "1"},
+                {type: "text", maxlength: "1", size: "1"},
+                {type: "text", maxlength: "1", size: "1"},
+                {type: "text", maxlength: "1", size: "1"}
+
+            ]},
+            { id: "answer2", classes: "answer2", cells: [
+                {type: "text", maxlength: "1", size: "1"},
+                {type: "text", maxlength: "1", size: "1"},
+                {type: "text", maxlength: "1", size: "1"},
+                {type: "text", maxlength: "1", size: "1"},
+                {type: "text", maxlength: "1", size: "1"}
+
+            ]},
+            { id: "answer3", classes: "answer3", cells: [
+                {type: "text", maxlength: "1", size: "1"},
+                {type: "text", maxlength: "1", size: "1"},
+                {type: "text", maxlength: "1", size: "1"},
+                {type: "text", maxlength: "1", size: "1"},
+                {type: "text", maxlength: "1", size: "1"}
+
+            ]},
+            { id: "answer4", classes: "answer4", cells: [
+                {type: "text", maxlength: "1", size: "1"},
+                {type: "text", maxlength: "1", size: "1"},
+                {type: "text", maxlength: "1", size: "1"},
+                {type: "text", maxlength: "1", size: "1"},
+                {type: "text", maxlength: "1", size: "1"}
+
+            ]},
+            { id: "answer5", classes: "answer5", cells: [
+                {type: "text", maxlength: "1", size: "1"},
+                {type: "text", maxlength: "1", size: "1"},
+                {type: "text", maxlength: "1", size: "1"},
+                {type: "text", maxlength: "1", size: "1"},
+                {type: "text", maxlength: "1", size: "1"}
+
+            ]},
+            { id: "answer6", classes: "answer6", cells: [
+                {type: "text", maxlength: "1", size: "1"},
+                {type: "text", maxlength: "1", size: "1"},
+                {type: "text", maxlength: "1", size: "1"},
+                {type: "text", maxlength: "1", size: "1"},
+                {type: "text", maxlength: "1", size: "1"}
+
+            ]}
+        ];
+
+        //Actually create the table
+        rowData.forEach(function(rowDataItem) {
+            //Create the row
+            let row = document.createElement("tr");
+            row.id = rowDataItem.id;
+            row.className = rowDataItem.classes;
+
+            //Create the cells
+            rowDataItem.cells.forEach(function(cellData) {
+                let cell = document.createElement("td");
+                let input = document.createElement("input");
+                input.type = cellData.type;
+                input.maxLength = cellData.maxlength;
+                input.size = cellData.size;
+                cell.appendChild(input);
+                row.appendChild(cell);
+            });
+
+            tbody.appendChild(row);
+        });
+    }
+
+    refreshTable() {
+        // Delete current table
+        let table = document.getElementById("game-table");
+        let tbody = table.querySelector("tbody");
+        if (tbody) {
+            table.removeChild(tbody);
+        }
+
+        // Recreate table
+        let newTbody = document.createElement("tbody");
+        table.appendChild(newTbody);
+        this.freshTable();
+        }
+
+    correctGuess() {
+        //Increase Score
+
+        //Reset Table
+        this.refreshTable();
+        //Generate New Word
+        this.generateWord();
+
+        //Increase Wordcount
+        this.wordCount++;        
+        wordsSolved.innerText = this.wordCount;
+
+        //Reset numGuesses
+        this.numGuesses = 0;
+    }
+
     resetGame() {
         //New Word
         this.generateWord();
         //Clear Table
-
+        this.refreshTable();
         //Reset Score
 
         //Restart Word Count
         this.wordCount = 0;
         wordsSolved.innerText = this.wordCount;
+
+        //Reset numGuesses
+        this.numGuesses = 0;
     }
 
     getPlayerName() {
