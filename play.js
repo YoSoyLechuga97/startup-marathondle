@@ -56,18 +56,18 @@ class Game {
         let rowData = [
             { id: "answer1", classes: "answer1 curr-answer", cells: [
                 {type: "text", maxlength: "1", size: "1"},
-                {type: "text", maxlength: "1", size: "1", disabled: "true"},
-                {type: "text", maxlength: "1", size: "1", disabled: "true"},
-                {type: "text", maxlength: "1", size: "1", disabled: "true"},
-                {type: "text", maxlength: "1", size: "1", disabled: "true"}
+                {type: "text", maxlength: "1", size: "1"},
+                {type: "text", maxlength: "1", size: "1"},
+                {type: "text", maxlength: "1", size: "1"},
+                {type: "text", maxlength: "1", size: "1"}
 
             ]},
             { id: "answer2", classes: "answer2", cells: [
-                {type: "text", maxlength: "1", size: "1", disabled: "true"},
-                {type: "text", maxlength: "1", size: "1", disabled: "true"},
-                {type: "text", maxlength: "1", size: "1", disabled: "true"},
-                {type: "text", maxlength: "1", size: "1", disabled: "true"},
-                {type: "text", maxlength: "1", size: "1", disabled: "true"}
+                {type: "text", maxlength: "1", size: "1"},
+                {type: "text", maxlength: "1", size: "1"},
+                {type: "text", maxlength: "1", size: "1"},
+                {type: "text", maxlength: "1", size: "1"},
+                {type: "text", maxlength: "1", size: "1"}
 
             ]},
             { id: "answer3", classes: "answer3", cells: [
@@ -124,6 +124,23 @@ class Game {
             });
 
             tbody.appendChild(row);
+        });
+
+        //Make it so that the cursor flows between the different cells
+        let cells = document.querySelectorAll("table input");
+
+        cells.forEach(function(letter, index) {
+            //Make it so that they are waiting for user input
+            letter.addEventListener("keydown", function(event) {
+                //Only permits letters or backspace
+                if ((event.keyCode >=65 && event.keyCode <=90) || event.keyCode == 8) {
+                    if((((index + 1) % 5) > 0) && event.keyCode !== 8 && letter.value !== "") { //Move forward if there is another cell to go
+                        cells[index + 1].focus();
+                    } else if ((((index) % 5) != 0) && event.keyCode === 8 && letter.value === "") { //Move backwards if there are any cells
+                        cells[index - 1].focus();
+                    }
+                }
+            });
         });
     }
 
