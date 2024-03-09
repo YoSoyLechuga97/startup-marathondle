@@ -33,7 +33,6 @@ h1 {
     color:rgb(70, 165, 33);
 }
 
-
 /* Class Specific Style */
 .navbar {
     border-bottom: 2px solid rgb(00,00, 00)
@@ -123,6 +122,10 @@ h1 {
 
   .game table tr.curr-answer input[type="text"] {
     background-color: rgb(109, 108, 106, 0.9);
+  }
+
+  .game table tr input#first{
+    background-color: aqua;
   }
 
   .reset-button {

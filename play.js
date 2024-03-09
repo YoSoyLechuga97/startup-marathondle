@@ -31,6 +31,10 @@ class Game {
         let wordsSolved = document.querySelector('#wordsSolved')
         wordsSolved.innerText = this.wordCount;
 
+        //Disabling cells we don't need
+        // let inputField = document.getElementById('first');
+        // inputField.setAttribute('disabled', 'disabled');
+
         //Set numGuesses for this word
         this.numGuesses = 0;
 
@@ -52,50 +56,50 @@ class Game {
         let rowData = [
             { id: "answer1", classes: "answer1 curr-answer", cells: [
                 {type: "text", maxlength: "1", size: "1"},
-                {type: "text", maxlength: "1", size: "1"},
-                {type: "text", maxlength: "1", size: "1"},
-                {type: "text", maxlength: "1", size: "1"},
-                {type: "text", maxlength: "1", size: "1"}
+                {type: "text", maxlength: "1", size: "1", disabled: "true"},
+                {type: "text", maxlength: "1", size: "1", disabled: "true"},
+                {type: "text", maxlength: "1", size: "1", disabled: "true"},
+                {type: "text", maxlength: "1", size: "1", disabled: "true"}
 
             ]},
             { id: "answer2", classes: "answer2", cells: [
-                {type: "text", maxlength: "1", size: "1"},
-                {type: "text", maxlength: "1", size: "1"},
-                {type: "text", maxlength: "1", size: "1"},
-                {type: "text", maxlength: "1", size: "1"},
-                {type: "text", maxlength: "1", size: "1"}
+                {type: "text", maxlength: "1", size: "1", disabled: "true"},
+                {type: "text", maxlength: "1", size: "1", disabled: "true"},
+                {type: "text", maxlength: "1", size: "1", disabled: "true"},
+                {type: "text", maxlength: "1", size: "1", disabled: "true"},
+                {type: "text", maxlength: "1", size: "1", disabled: "true"}
 
             ]},
             { id: "answer3", classes: "answer3", cells: [
-                {type: "text", maxlength: "1", size: "1"},
-                {type: "text", maxlength: "1", size: "1"},
-                {type: "text", maxlength: "1", size: "1"},
-                {type: "text", maxlength: "1", size: "1"},
-                {type: "text", maxlength: "1", size: "1"}
+                {type: "text", maxlength: "1", size: "1", disabled: "true"},
+                {type: "text", maxlength: "1", size: "1", disabled: "true"},
+                {type: "text", maxlength: "1", size: "1", disabled: "true"},
+                {type: "text", maxlength: "1", size: "1", disabled: "true"},
+                {type: "text", maxlength: "1", size: "1", disabled: "true"}
 
             ]},
             { id: "answer4", classes: "answer4", cells: [
-                {type: "text", maxlength: "1", size: "1"},
-                {type: "text", maxlength: "1", size: "1"},
-                {type: "text", maxlength: "1", size: "1"},
-                {type: "text", maxlength: "1", size: "1"},
-                {type: "text", maxlength: "1", size: "1"}
+                {type: "text", maxlength: "1", size: "1", disabled: "true"},
+                {type: "text", maxlength: "1", size: "1", disabled: "true"},
+                {type: "text", maxlength: "1", size: "1", disabled: "true"},
+                {type: "text", maxlength: "1", size: "1", disabled: "true"},
+                {type: "text", maxlength: "1", size: "1", disabled: "true"}
 
             ]},
             { id: "answer5", classes: "answer5", cells: [
-                {type: "text", maxlength: "1", size: "1"},
-                {type: "text", maxlength: "1", size: "1"},
-                {type: "text", maxlength: "1", size: "1"},
-                {type: "text", maxlength: "1", size: "1"},
-                {type: "text", maxlength: "1", size: "1"}
+                {type: "text", maxlength: "1", size: "1", disabled: "true"},
+                {type: "text", maxlength: "1", size: "1", disabled: "true"},
+                {type: "text", maxlength: "1", size: "1", disabled: "true"},
+                {type: "text", maxlength: "1", size: "1", disabled: "true"},
+                {type: "text", maxlength: "1", size: "1", disabled: "true"}
 
             ]},
             { id: "answer6", classes: "answer6", cells: [
-                {type: "text", maxlength: "1", size: "1"},
-                {type: "text", maxlength: "1", size: "1"},
-                {type: "text", maxlength: "1", size: "1"},
-                {type: "text", maxlength: "1", size: "1"},
-                {type: "text", maxlength: "1", size: "1"}
+                {type: "text", maxlength: "1", size: "1", disabled: "true"},
+                {type: "text", maxlength: "1", size: "1", disabled: "true"},
+                {type: "text", maxlength: "1", size: "1", disabled: "true"},
+                {type: "text", maxlength: "1", size: "1", disabled: "true"},
+                {type: "text", maxlength: "1", size: "1", disabled: "true"}
 
             ]}
         ];
@@ -114,6 +118,7 @@ class Game {
                 input.type = cellData.type;
                 input.maxLength = cellData.maxlength;
                 input.size = cellData.size;
+                input.disabled = cellData.disabled;
                 cell.appendChild(input);
                 row.appendChild(cell);
             });
