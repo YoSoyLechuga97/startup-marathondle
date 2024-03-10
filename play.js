@@ -16,7 +16,7 @@ let wordArray = [
     "ready", "quite", "class", "bring", "round"
 ]
 
-let wordGuess = [];
+//let wordGuess = [];
 
 // function checkAnswer(userGuess) {
 //     console.log("I made it to outer check answer with the user guess: ", userGuess)
@@ -60,7 +60,62 @@ class Game {
     }
 
     checkAnswer(inputGuess) {
-        console.log("Made it to inner checkAnswer with input: ", inputGuess);
+        //Increment numGuesses
+        this.numGuesses++;
+        //Seperate correct word into array of chars
+        let corrWord = this.word.split('');
+        let letterPos = 0;
+        let numCorrectLetters = 0;
+        //Create array out of userInput
+        self.wordGuess = Array.from(inputGuess)
+                                         .map(input => input.value)
+
+        //Iterate over each letter of user input
+        self.wordGuess.forEach((letter) => {
+            let colorFlag = 0;
+            console.log("Letter: ", letter);
+            //Compare it to each letter of the correct word
+            corrWord.forEach((corrLetter) => {
+                if (letter == corrLetter && letterPos == this.word.indexOf(corrLetter)) { //GREEN
+                    colorFlag = 2;
+                } else if (letter == corrLetter && colorFlag < 1) { //YELLOW
+                    colorFlag = 1;
+                }
+            })
+
+            if (colorFlag == 2) {
+                console.log(letter, " should be GREEN");
+                numCorrectLetters++;
+            } else if (colorFlag == 1) {
+                console.log(letter, " should be YELLOW");
+            } else {
+                console.log(letter, " should be GREY");
+            }
+            letterPos++;
+        })
+
+        //Print out information
+        if (numCorrectLetters == 5) {
+            console.log("CORRECT ANSWER");
+        }
+        console.log("Made it to inner checkAnswer with input: ", wordGuess);
+        console.log("The correct answer is: ", corrWord);
+        this.clearAnswer();
+
+        //Call Functions to set board up properly
+        if (numCorrectLetters == 5) { //Correct Guess
+            this.correctGuess();
+        } else if(this.numGuesses == 6) { //Final guess
+            this.loseGame();
+        } else { //Move on to the next guess
+            this.nextGuess();
+        }
+    }
+
+    clearAnswer() {
+        //Clear userGuess after it is used so that a fresh guess can be made
+        self.wordGuess = [];
+        console.log("userGuess erased, it is now: ", this.wordGuess);
     }
 
     freshTable() {
@@ -157,10 +212,8 @@ class Game {
                     } else if ((((index + 1) % 5) == 0) && event.keyCode == 13 && letter.value !== "") { //User is submitting a guess
                         //Concatenate all cells into array wordGuess and sends it to checkAnswer()
                         let userGuess = document.querySelectorAll(".curr-answer input");
-                        wordGuess = Array.from(userGuess)
-                                         .map(input => input.value)
-                                         .join('');
-                        this.checkAnswer(wordGuess);
+                        
+                        this.checkAnswer(userGuess);
                     }
                 }
             });
@@ -179,6 +232,7 @@ class Game {
         let newTbody = document.createElement("tbody");
         table.appendChild(newTbody);
         this.freshTable();
+        this.addEventListeners();
         }
 
     correctGuess() {
@@ -195,6 +249,14 @@ class Game {
 
         //Reset numGuesses
         this.numGuesses = 0;
+    }
+
+    loseGame() {
+        console.log("You have lost the game");
+    }
+
+    nextGuess() {
+        console.log("Set up next guess");
     }
 
     resetGame() {
