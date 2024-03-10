@@ -124,8 +124,16 @@ h1 {
     background-color: rgb(109, 108, 106, 0.9);
   }
 
-  .game table tr input#first{
-    background-color: aqua;
+  .game table input#yellow {
+    background-color: rgb(218, 174, 54);
+  }
+
+  .game table input#green {
+    background-color: rgb(65, 151, 30);
+  }
+
+  .game table input#grey {
+    background-color: rgb(65, 65, 65);
   }
 
   .reset-button {

@@ -83,13 +83,20 @@ class Game {
                 }
             })
 
+            //Manipulate letter cells
+            let cells = document.querySelectorAll("table input");
+            let cellIndex = (5 * (this.numGuesses - 1)) + letterPos;
+            let currCell = cells[cellIndex];
             if (colorFlag == 2) {
                 console.log(letter, " should be GREEN");
+                currCell.id = "green";
                 numCorrectLetters++;
             } else if (colorFlag == 1) {
                 console.log(letter, " should be YELLOW");
+                currCell.id = "yellow";
             } else {
                 console.log(letter, " should be GREY");
+                currCell.id = "grey";
             }
             letterPos++;
         })
@@ -188,6 +195,7 @@ class Game {
                 input.maxLength = cellData.maxlength;
                 input.size = cellData.size;
                 input.disabled = cellData.disabled;
+                input.id = cellData.id;
                 cell.appendChild(input);
                 row.appendChild(cell);
             });
