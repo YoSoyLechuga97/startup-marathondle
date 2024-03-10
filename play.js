@@ -33,17 +33,11 @@ class Game {
         //Generate a new word
         this.generateWord();
         //Generate the table
-        this.freshTable();
-        //Add Event Listeners for table
-        this.addEventListeners();
+        this.refreshTable();
         //Set counter for number of words solved this run
         this.wordCount = 0;
         let wordsSolved = document.querySelector('#wordsSolved')
         wordsSolved.innerText = this.wordCount;
-
-        //Disabling cells we don't need
-        // let inputField = document.getElementById('first');
-        // inputField.setAttribute('disabled', 'disabled');
 
         //Set numGuesses for this word
         this.numGuesses = 0;
@@ -73,13 +67,15 @@ class Game {
         //Iterate over each letter of user input
         self.wordGuess.forEach((letter) => {
             let colorFlag = 0;
+            let answerIndex = 0;
             //Compare it to each letter of the correct word
             corrWord.forEach((corrLetter) => {
-                if (letter === corrLetter) { //GREEN
+                if (letter == corrLetter && letterPos == answerIndex) { //GREEN
                     colorFlag = 2;
                 } else if (letter == corrLetter && colorFlag < 1) { //YELLOW
                     colorFlag = 1;
                 }
+                answerIndex++;
             })
 
             //Manipulate letter cells
@@ -233,6 +229,10 @@ class Game {
         table.appendChild(newTbody);
         this.freshTable();
         this.addEventListeners();
+
+        //Set Cursor to top
+        let cells = document.querySelectorAll("table input");
+        cells[0].focus();
         }
 
     correctGuess() {
@@ -252,11 +252,18 @@ class Game {
     }
 
     loseGame() {
+        //Creat node list of tr's
+        let row = document.querySelectorAll("table tr");
+        //Close last guess (remove "curr-answer" class)
+        row[this.numGuesses - 1].classList.remove("curr-answer");
+        row[this.numGuesses - 1].classList.add("disabled-row")
+        this.disableInput(row, this.numGuesses -1);
         console.log("You have lost the game");
+
+        //Save Score
     }
 
     nextGuess() {
-        let cells = document.querySelectorAll("table input");
         //Create node list of tr's
         let row = document.querySelectorAll("table tr");
         //Close last guess (remove "curr-answer" class)
@@ -266,7 +273,6 @@ class Game {
         //Add class to next row
         row[this.numGuesses].classList.add("curr-answer");
         this.enableInput(row, this.numGuesses);
-
     } 
 
     disableInput(rowArray, rowIndex) {
@@ -295,6 +301,9 @@ class Game {
         this.generateWord();
         //Clear Table
         this.refreshTable();
+        //Set Cursor to top
+        let cells = document.querySelectorAll("table input");
+        cells[0].focus();
         //Reset Score
 
         //Restart Word Count
