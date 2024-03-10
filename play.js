@@ -16,8 +16,16 @@ let wordArray = [
     "ready", "quite", "class", "bring", "round"
 ]
 
+let wordGuess = [];
+
+// function checkAnswer(userGuess) {
+//     console.log("I made it to outer check answer with the user guess: ", userGuess)
+
+// }
+
 class Game {
     word;
+    wordGuess = [];
     wordCount;
     numGuesses;
 
@@ -26,6 +34,8 @@ class Game {
         this.generateWord();
         //Generate the table
         this.freshTable();
+        //Add Event Listeners for table
+        this.addEventListeners();
         //Set counter for number of words solved this run
         this.wordCount = 0;
         let wordsSolved = document.querySelector('#wordsSolved')
@@ -49,6 +59,10 @@ class Game {
         console.log("Your current word is " + this.word);
     }
 
+    checkAnswer(inputGuess) {
+        console.log("Made it to inner checkAnswer with input: ", inputGuess);
+    }
+
     freshTable() {
         let tbody = document.querySelector("#game-table tbody");
 
@@ -63,11 +77,11 @@ class Game {
 
             ]},
             { id: "answer2", classes: "answer2", cells: [
-                {type: "text", maxlength: "1", size: "1"},
-                {type: "text", maxlength: "1", size: "1"},
-                {type: "text", maxlength: "1", size: "1"},
-                {type: "text", maxlength: "1", size: "1"},
-                {type: "text", maxlength: "1", size: "1"}
+                {type: "text", maxlength: "1", size: "1", disabled: "true"},
+                {type: "text", maxlength: "1", size: "1", disabled: "true"},
+                {type: "text", maxlength: "1", size: "1", disabled: "true"},
+                {type: "text", maxlength: "1", size: "1", disabled: "true"},
+                {type: "text", maxlength: "1", size: "1", disabled: "true"}
 
             ]},
             { id: "answer3", classes: "answer3", cells: [
@@ -125,19 +139,28 @@ class Game {
 
             tbody.appendChild(row);
         });
+    }
 
+    addEventListeners() {
         //Make it so that the cursor flows between the different cells
         let cells = document.querySelectorAll("table input");
 
-        cells.forEach(function(letter, index) {
+        cells.forEach((letter, index) => {
             //Make it so that they are waiting for user input
-            letter.addEventListener("keydown", function(event) {
-                //Only permits letters or backspace
-                if ((event.keyCode >=65 && event.keyCode <=90) || event.keyCode == 8) {
+            letter.addEventListener("keydown", (event) => {
+                //Only permits letters or backspace or enter
+                if ((event.keyCode >=65 && event.keyCode <=90) || event.keyCode == 8 || event.keyCode == 13) {
                     if((((index + 1) % 5) > 0) && event.keyCode !== 8 && letter.value !== "") { //Move forward if there is another cell to go
                         cells[index + 1].focus();
                     } else if ((((index) % 5) != 0) && event.keyCode === 8 && letter.value === "") { //Move backwards if there are any cells
                         cells[index - 1].focus();
+                    } else if ((((index + 1) % 5) == 0) && event.keyCode == 13 && letter.value !== "") { //User is submitting a guess
+                        //Concatenate all cells into array wordGuess and sends it to checkAnswer()
+                        let userGuess = document.querySelectorAll(".curr-answer input");
+                        wordGuess = Array.from(userGuess)
+                                         .map(input => input.value)
+                                         .join('');
+                        this.checkAnswer(wordGuess);
                     }
                 }
             });
