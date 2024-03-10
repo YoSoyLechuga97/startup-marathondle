@@ -88,14 +88,11 @@ class Game {
             let cellIndex = (5 * (this.numGuesses - 1)) + letterPos;
             let currCell = cells[cellIndex];
             if (colorFlag == 2) {
-                console.log(letter, " should be GREEN");
                 currCell.id = "green";
                 numCorrectLetters++;
             } else if (colorFlag == 1) {
-                console.log(letter, " should be YELLOW");
                 currCell.id = "yellow";
             } else {
-                console.log(letter, " should be GREY");
                 currCell.id = "grey";
             }
             letterPos++;
@@ -265,6 +262,37 @@ class Game {
 
     nextGuess() {
         console.log("Set up next guess");
+        let cells = document.querySelectorAll("table input");
+        //Create node list of tr's
+        let row = document.querySelectorAll("table tr");
+        //Close last guess (remove "curr-answer" class)
+        row[this.numGuesses - 1].classList.remove("curr-answer");
+        this.disableInput(row, this.numGuesses -1);
+        //Add class to next row
+        row[this.numGuesses].classList.add("curr-answer");
+        this.enableInput(row, this.numGuesses);
+
+    } 
+
+    disableInput(rowArray, rowIndex) {
+        let rowToDisable = rowArray[rowIndex];
+        let cells = rowToDisable.querySelectorAll("input");
+
+        //Iterate over each cell to disable the ability to type
+        cells.forEach((input) => {
+            input.disabled = "true";
+        })
+    }
+
+    enableInput(rowArray, rowIndex) {
+        let rowToEnable = rowArray[rowIndex];
+        let cells = rowToEnable.querySelectorAll("input");
+
+        //Iterate over each cell to enable the ability to type
+        cells.forEach((input) => {
+            input.disabled = false;
+        })
+        cells[0].focus();
     }
 
     resetGame() {
