@@ -258,7 +258,7 @@ class Game {
         row[this.numGuesses - 1].classList.remove("curr-answer");
         row[this.numGuesses - 1].classList.add("disabled-row")
         this.disableInput(row, this.numGuesses -1);
-        console.log("You have lost the game");
+        alert("You have lost the game\nThe word was: " + this.word);
 
         //Save Score
     }
