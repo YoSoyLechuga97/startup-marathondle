@@ -124,16 +124,23 @@ h1 {
     background-color: rgb(109, 108, 106, 0.9);
   }
 
+  .game table tr.disabled-row input[type="text"] {
+    color: rgb(236, 236, 236);
+  }
+
   .game table input#yellow {
     background-color: rgb(218, 174, 54);
+    filter: brightness(0.8);
   }
 
   .game table input#green {
     background-color: rgb(65, 151, 30);
+    filter: brightness(0.8);
   }
 
   .game table input#grey {
     background-color: rgb(65, 65, 65);
+    filter: brightness(0.8);
   }
 
   .reset-button {

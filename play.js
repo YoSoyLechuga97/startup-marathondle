@@ -68,15 +68,14 @@ class Game {
         let numCorrectLetters = 0;
         //Create array out of userInput
         self.wordGuess = Array.from(inputGuess)
-                                         .map(input => input.value)
+                              .map(input => input.value)
 
         //Iterate over each letter of user input
         self.wordGuess.forEach((letter) => {
             let colorFlag = 0;
-            console.log("Letter: ", letter);
             //Compare it to each letter of the correct word
             corrWord.forEach((corrLetter) => {
-                if (letter == corrLetter && letterPos == this.word.indexOf(corrLetter)) { //GREEN
+                if (letter === corrLetter) { //GREEN
                     colorFlag = 2;
                 } else if (letter == corrLetter && colorFlag < 1) { //YELLOW
                     colorFlag = 1;
@@ -102,8 +101,6 @@ class Game {
         if (numCorrectLetters == 5) {
             console.log("CORRECT ANSWER");
         }
-        console.log("Made it to inner checkAnswer with input: ", wordGuess);
-        console.log("The correct answer is: ", corrWord);
         this.clearAnswer();
 
         //Call Functions to set board up properly
@@ -119,7 +116,6 @@ class Game {
     clearAnswer() {
         //Clear userGuess after it is used so that a fresh guess can be made
         self.wordGuess = [];
-        console.log("userGuess erased, it is now: ", this.wordGuess);
     }
 
     freshTable() {
@@ -217,7 +213,6 @@ class Game {
                     } else if ((((index + 1) % 5) == 0) && event.keyCode == 13 && letter.value !== "") { //User is submitting a guess
                         //Concatenate all cells into array wordGuess and sends it to checkAnswer()
                         let userGuess = document.querySelectorAll(".curr-answer input");
-                        
                         this.checkAnswer(userGuess);
                     }
                 }
@@ -261,12 +256,12 @@ class Game {
     }
 
     nextGuess() {
-        console.log("Set up next guess");
         let cells = document.querySelectorAll("table input");
         //Create node list of tr's
         let row = document.querySelectorAll("table tr");
         //Close last guess (remove "curr-answer" class)
         row[this.numGuesses - 1].classList.remove("curr-answer");
+        row[this.numGuesses - 1].classList.add("disabled-row")
         this.disableInput(row, this.numGuesses -1);
         //Add class to next row
         row[this.numGuesses].classList.add("curr-answer");
@@ -315,6 +310,5 @@ class Game {
     }
 
 }
-
 
 const game = new Game();
