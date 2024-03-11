@@ -147,7 +147,7 @@ h1 {
 
   .game table tr.correct-guess input[type="text"] {
     color: rgb(78, 182, 36);
-    background-color: rgb(4, 4, 4);
+    background-color: rgb(48, 48, 48);
     font-weight: bold;
     transition: background-color 0.3s ease, color 1s ease, font-weight 1.5s ease;
   }
