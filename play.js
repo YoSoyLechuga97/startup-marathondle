@@ -28,6 +28,7 @@ class Game {
     wordGuess = [];
     wordCount;
     numGuesses;
+    score;
 
     constructor() {
         //Generate a new word
@@ -41,6 +42,9 @@ class Game {
 
         //Set numGuesses for this word
         this.numGuesses = 0;
+
+        //Set Score
+        this.score = 0;
 
         const playerNameEl = document.querySelector('.player-username');
         playerNameEl.textContent = this.getPlayerName();
@@ -92,11 +96,8 @@ class Game {
             }
             letterPos++;
         })
-
-        //Print out information
-        if (numCorrectLetters == 5) {
-            console.log("CORRECT ANSWER");
-        }
+        
+        //Clear Array for next answer
         this.clearAnswer();
 
         //Call Functions to set board up properly
@@ -237,18 +238,50 @@ class Game {
 
     correctGuess() {
         //Increase Score
+        this.score += this.addScore();
+        let updateScore = document.getElementById("currScore");
+        updateScore.value = this.score;
+        //Display answer as correct
+        this.displayCorrectRow();
+        //Alert user that they were correct
+        setTimeout(() => {
+            alert("Good Guess! Your score is now " + this.score + ", keep going!");    
+            //Reset Table
+            this.refreshTable();
+            //Generate New Word
+            this.generateWord();
+            //Increase Wordcount
+            this.wordCount++;        
+            wordsSolved.innerText = this.wordCount;
+            //Reset numGuesses
+            this.numGuesses = 0;
+        }, 2000)
+    }
 
-        //Reset Table
-        this.refreshTable();
-        //Generate New Word
-        this.generateWord();
+    displayCorrectRow () {
+        let row = document.querySelectorAll("table tr");
+        let cell = row[this.numGuesses - 1].querySelectorAll('input');
+        cell.forEach((input) => {
+            input.id = "";
+        } )
+        row[this.numGuesses - 1].classList.remove("curr-answer");
+        row[this.numGuesses - 1].classList.add("correct-guess");
+    }
 
-        //Increase Wordcount
-        this.wordCount++;        
-        wordsSolved.innerText = this.wordCount;
-
-        //Reset numGuesses
-        this.numGuesses = 0;
+    addScore() {
+        if(this.numGuesses == 1) {
+            return 100;
+        } else if(this.numGuesses == 2) {
+            return 80;
+        } else if(this.numGuesses == 3) {
+            return 65;
+        } else if(this.numGuesses == 4) {
+            return 40;
+        } else if(this.numGuesses == 5) {
+            return 25;
+        } else if(this.numGuesses == 6) {
+            return 10;
+        }
     }
 
     loseGame() {
