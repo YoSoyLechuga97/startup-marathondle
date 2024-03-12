@@ -334,7 +334,9 @@ class Game {
         let cells = document.querySelectorAll("table input");
         cells[0].focus();
         //SaveScore
-        this.saveScore(this.score);
+        if (this.score != 0 && this.score != '--') {
+            this.saveScore(this.score);
+        }
         //Reset Score
         this.score = 0;
         let updateScore = document.getElementById("currScore");
