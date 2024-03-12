@@ -16,13 +16,6 @@ let wordArray = [
     "ready", "quite", "class", "bring", "round"
 ]
 
-//let wordGuess = [];
-
-// function checkAnswer(userGuess) {
-//     console.log("I made it to outer check answer with the user guess: ", userGuess)
-
-// }
-
 class Game {
     word;
     wordGuess = [];
@@ -46,6 +39,7 @@ class Game {
         //Set Score
         this.score = 0;
 
+        //Get Player Name
         const playerNameEl = document.querySelector('.player-username');
         playerNameEl.textContent = this.getPlayerName();
     }
@@ -295,7 +289,7 @@ class Game {
         alert("You have lost the game\nThe word was: " + this.word);
 
         //Save Score
-
+        this.saveScore(this.score);
     }
 
     nextGuess() {
@@ -339,6 +333,8 @@ class Game {
         //Set Cursor to top
         let cells = document.querySelectorAll("table input");
         cells[0].focus();
+        //SaveScore
+        this.saveScore(this.score);
         //Reset Score
         this.score = 0;
         let updateScore = document.getElementById("currScore");
@@ -353,6 +349,42 @@ class Game {
 
     getPlayerName() {
         return localStorage.getItem('userName') ?? 'Player Unknown';
+    }
+
+    saveScore(score) {
+        let playerScores = [];
+        const scoresText = localStorage.getItem('playerScores');
+        //If they already have information
+        if (scoresText) {
+            playerScores = JSON.parse(scoresText);
+        }
+        playerScores = this.updateScores(this.getPlayerName(), score, playerScores);
+
+        localStorage.setItem('playerScores', JSON.stringify(playerScores));
+        console.log(playerScores);
+    }
+
+    updateScores(nameOfPlayer, score, scoreObj) {
+        const newScore = {name: nameOfPlayer, score: score};
+
+        let found = false;
+        for (const [i, prevScore] of scoreObj.entries()) {
+            if (score > prevScore.score) {
+                scoreObj.splice(i, 0, newScore);
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            scoreObj.push(newScore);
+        }
+
+        if (scoreObj.length > 5) {
+            scoreObj.length = 5;
+        }
+
+        return scoreObj;
     }
 
 }

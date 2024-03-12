@@ -1,14 +1,20 @@
-class Scoreboard {
-    
-    constructor() {
-        const playerNameEl = document.querySelector('.player-username');
-        playerNameEl.textContent = this.getPlayerName();
+function Scoreboard() {
+    //Customize Board Labels
+    const playerNameEl = document.querySelector('.player-username');
+    const playerName = localStorage.getItem('userName') ?? 'Unkown Player';
+    playerNameEl.textContent = playerName;
 
+    //Obtain score JSON
+    let personalScores = [];
+    const scoresText = localStorage.getItem('personalScores');
+    if (scoresText) {
+        scores = JSON.parse(scoresText);
     }
 
-    getPlayerName() {
-        return localStorage.getItem('userName') ?? 'Unkown Player';
-    }
 }
 
-const scoreboard = new Scoreboard();
+Scoreboard();
+
+//personal-scores
+//friend-scores
+//world-scores
