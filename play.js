@@ -342,7 +342,7 @@ class Game {
         //Reset Score
         this.score = 0;
         let updateScore = document.getElementById("currScore");
-        updateScore.textContent = this.score;
+        updateScore.textContent = '--';
         //Restart Word Count
         this.wordCount = 0;
         wordsSolved.innerText = this.wordCount;
