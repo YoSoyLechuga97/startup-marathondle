@@ -74,9 +74,9 @@ class Game {
             let answerIndex = 0;
             //Compare it to each letter of the correct word
             corrWord.forEach((corrLetter) => {
-                if (letter == corrLetter && letterPos == answerIndex) { //GREEN
+                if (letter.toLowerCase() == corrLetter && letterPos == answerIndex) { //GREEN
                     colorFlag = 2;
-                } else if (letter == corrLetter && colorFlag < 1) { //YELLOW
+                } else if (letter.toLowerCase() == corrLetter && colorFlag < 1) { //YELLOW
                     colorFlag = 1;
                 }
                 answerIndex++;
