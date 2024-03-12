@@ -240,7 +240,6 @@ class Game {
         //Increase Score
         this.score += this.addScore();
         let updateScore = document.getElementById("currScore");
-        updateScore.value = this.score;
         //Display answer as correct
         this.displayCorrectRow();
         //Alert user that they were correct
@@ -255,6 +254,8 @@ class Game {
             wordsSolved.innerText = this.wordCount;
             //Reset numGuesses
             this.numGuesses = 0;
+            //Display Score
+            updateScore.textContent = this.score;
         }, 2000)
     }
 
@@ -294,6 +295,7 @@ class Game {
         alert("You have lost the game\nThe word was: " + this.word);
 
         //Save Score
+
     }
 
     nextGuess() {
@@ -338,7 +340,9 @@ class Game {
         let cells = document.querySelectorAll("table input");
         cells[0].focus();
         //Reset Score
-
+        this.score = 0;
+        let updateScore = document.getElementById("currScore");
+        updateScore.textContent = this.score;
         //Restart Word Count
         this.wordCount = 0;
         wordsSolved.innerText = this.wordCount;
