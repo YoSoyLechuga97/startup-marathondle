@@ -4,7 +4,7 @@ function Scoreboard() {
     const playerName = localStorage.getItem('userName') ?? 'Unkown Player';
     playerNameEl.textContent = playerName;
 
-    //Obtain score JSON
+    //Obtain personal score JSON
     let personalScores = [];
     const scoresText = localStorage.getItem('playerScores');
     if (scoresText) {
@@ -12,10 +12,24 @@ function Scoreboard() {
     }
     //Create player's personal scores table
     const playerBodyEl = document.querySelector('#personal-scores');
+    makeTable(playerBodyEl, personalScores);
 
-    if (personalScores.length) {
+    //Create friend's score table
+    let friendScores = [];
+    const friendText = localStorage.getItem('friendScores');
+    if (friendText) {
+        friendScores = JSON.parse(friendText);
+    }
+    const friendBodyEl = document.querySelector('#friend-scores');
+    makeTable(friendBodyEl, friendScores);
+
+
+}
+
+function makeTable (bodyEl, scoreArray) {
+    if (scoreArray.length) {
         //Iterate over each row
-        for (const [i, score] of personalScores.entries()) {
+        for (const [i, score] of scoreArray.entries()) {
             //Create all table data elements
             const placeTdEl = document.createElement('td');
             const nameTdEl = document.createElement('td');
@@ -36,10 +50,10 @@ function Scoreboard() {
             currRowEl.appendChild(scoreTdEl);
 
             //Add finished row to the actual table
-            playerBodyEl.appendChild(currRowEl);
+            bodyEl.appendChild(currRowEl);
         }
     } else { //If cannot find any scores
-        playerBodyEl.innerHTML = '<tr><td colSpan=3>No scores yet!</tr>';
+        bodyEl.innerHTML = '<tr><td colSpan=3>No scores yet!</tr>';
     }
 }
 
