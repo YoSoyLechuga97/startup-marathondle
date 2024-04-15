@@ -24,7 +24,7 @@ function Scoreboard() {
 
     //Create news event websocket place
     setInterval(() => {
-        addNewEvent(`Maxwell`, 255);
+        addNewEvent(`Milo`, 255);
       }, 5000);
 
 
