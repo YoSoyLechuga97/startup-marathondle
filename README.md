@@ -31,3 +31,32 @@ I am going to use the required technologies in the following ways.
 - **WebSocket** - After a user finishes their game, their score is broadcast to all other users.
 - **React** - Application ported to use the React web framework.
 
+## HTML Deliverable
+For this deliverable I built out the structure of my application using HTML
+
+- [x] **HTML Pages** - 4 HTML Pages for login, game, score and about
+- [x] **Links** - The login page automatically links to game page, all pages accessible through menu
+- [x] **Text** - Each page has text describing what is happening
+- [x] **Images** - I use an image as the background of the page
+- [x] **DB/Login** - Input box and submit button for login
+- [x] **Websocket** - In Scoreboard there is a 'news' section for the websocket
+
+## CSS Deliverable
+
+For this deliverable I properly styled the application into its final appearance.
+
+- [x] **Header, footer, and main content body**
+- [x] **Navigation elements** - Created a drop down menu for the navigation elements
+- [x] **Responsive to window resizing** - My app looks great on all window sizes and devices
+- [x] **Application elements** - Used good contrast and whitespace
+- [x] **Application text content** - Consistent fonts that I feel fit the theme of my deliverable
+- [x] **Application images** - Made it so that it fits the background no matter the size.
+
+## JavaScript Deliverable
+
+For this deliverable I implemented Javascript so that the application works for a user, and added placeholders for future technology.
+
+- [x] **login** - When you press enter or the login button it takes you to the game.
+- [x] **database** - Display in the scoreboard page the user scores that are saved in and retrieved from local storage, but will be taken from a database later on.
+- [x] **WebSocket** - I used the setInterval function to periodically inform the user of other players and the score they just obtained, will replace with a websocket.
+- [x] **application logic** - The game changes in style and score depending on user interaction.

@@ -15,13 +15,17 @@ function Scoreboard() {
     makeTable(playerBodyEl, personalScores);
 
     //Create friend's score table
-    let friendScores = [];
-    const friendText = localStorage.getItem('friendScores');
-    if (friendText) {
-        friendScores = JSON.parse(friendText);
-    }
-    const friendBodyEl = document.querySelector('#friend-scores');
-    makeTable(friendBodyEl, friendScores);
+    // let friendScores = [];
+    // const friendText = localStorage.getItem('friendScores');
+    // if (friendText) {
+    //     friendScores = JSON.parse(friendText);
+    // }
+    // const friendBodyEl = document.querySelector('#friend-scores');
+
+    //Create news event websocket place
+    setInterval(() => {
+        addNewEvent(`Maxwell`, 255);
+      }, 5000);
 
 
 }
@@ -54,6 +58,19 @@ function makeTable (bodyEl, scoreArray) {
         }
     } else { //If cannot find any scores
         bodyEl.innerHTML = '<tr><td colSpan=3>No scores yet!</tr>';
+    }
+}
+
+function addNewEvent(eventName, eventScore) {
+    const eventTable = document.getElementById("friendHighScores").getElementsByTagName("tbody")[0];
+
+    let newRow = eventTable.insertRow(0);
+    let newCell = newRow.insertCell(0);
+
+    newCell.textContent = `${eventName} just scored ${eventScore}!`;
+
+    if (eventTable.rows.length > 5) {
+        eventTable.deleteRow(5);
     }
 }
 

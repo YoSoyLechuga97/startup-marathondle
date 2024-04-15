@@ -392,3 +392,11 @@ class Game {
 }
 
 const game = new Game();
+
+//TODO:
+//Force all input to be lower case
+//Search for keyinput changes between phones vs computers
+//Ask about why the iphone continues to use transluscent backgrounds
+//Create true false flag for updating score (update after game is lost OR when restart button is pressed, not both)
+//Adjust restart button so that it is not as tempting to press ('Are you sure?)
+//Should I make the table a JSON instead of iterating over it as much as I do?

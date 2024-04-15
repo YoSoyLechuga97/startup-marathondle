@@ -114,7 +114,7 @@ h1 {
   }
 
   .game table tr.curr-answer input[type="text"] {
-    background-color: rgb(109, 108, 106, 0.9);
+    background-color: rgba(109, 106, 108, 0.9);
   }
 
   .game table tr.disabled-row input[type="text"] {

@@ -52,21 +52,6 @@
         </table>
       </div>
       
-      <!-- Table of HighScores between you and friends -->
-      <div class="text-box">
-        <table class="friendHighScores">
-          <caption>Friend High Scores</caption>
-          <thead>
-            <tr>
-              <th><i class="fa-solid fa-users"></i></th>
-              <th>Name</th>
-              <th>Score</th>
-            </tr>
-          </thead>
-          <tbody id="friend-scores"></tbody>
-        </table>
-      </div>
-      
       <!-- All Time High Scores -->
       <div class="text-box">
         <table class="allTimeHighScores">
@@ -79,6 +64,29 @@
             </tr>
           </thead>
           <tbody id="world-scores"></tbody>
+        </table>
+      </div>
+
+      <!-- Table of Recent Scores between all users -->
+      <div class="text-box">
+        <table id="friendHighScores">
+          <caption>Recent Players</caption>
+          <thead>
+            <tr>
+              <th><i class="fa-solid fa-users"></i> News</th>
+            </tr>
+          </thead>
+          <tbody id="friend-scores">
+            <tr>
+              <td><span class="event">Jared</span> just scored 812!</td>
+            </tr>
+            <tr>
+              <td><span class="event">Micah</span> just scored 114!</td>
+            </tr>
+            <tr>
+              <td><span class="event">Jared</span> just scored 200!</td>
+            </tr>
+          </tbody>
         </table>
       </div>
 
