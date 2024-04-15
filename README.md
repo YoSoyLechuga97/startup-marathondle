@@ -60,3 +60,13 @@ For this deliverable I implemented Javascript so that the application works for 
 - [x] **database** - Display in the scoreboard page the user scores that are saved in and retrieved from local storage, but will be taken from a database later on.
 - [x] **WebSocket** - I used the setInterval function to periodically inform the user of other players and the score they just obtained, will replace with a websocket.
 - [x] **application logic** - The game changes in style and score depending on user interaction.
+
+## Service deliverable
+
+For this deliverable I added backend endpoints that receives a single score and returns an object of player scores.
+
+- [x] **Node.js/Express HTTP service** - done!
+- [x] **Static middleware for frontend** - done!
+- [ ] **Calls to third party endpoints** - I made a little 'easter egg' where if you pull up the console on the game page, a random Chuck Norris joke is generated!
+- [x] **Backend service endpoints** - Placeholders for login that stores the current user on the server. Endpoints for voting.
+- [x] **Frontend calls service endpoints** - I did this using the fetch function.

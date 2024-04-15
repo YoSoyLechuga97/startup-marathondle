@@ -21,6 +21,7 @@ class Game {
     wordGuess = [];
     wordCount;
     numGuesses;
+    lostGame = 0;
     score;
 
     constructor() {
@@ -32,6 +33,15 @@ class Game {
         this.wordCount = 0;
         let wordsSolved = document.querySelector('#wordsSolved')
         wordsSolved.innerText = this.wordCount;
+
+        //Add in my easter egg ;)
+        const url = "https://api.chucknorris.io/jokes/random?category=dev";
+        fetch(url)
+        .then((x) => x.json())
+        .then((response) => {
+            console.log(response.value + " ;)");
+        });
+
 
         //Set numGuesses for this word
         this.numGuesses = 0;
@@ -46,7 +56,7 @@ class Game {
 
     generateWord() {
         const randomIndex = Math.floor(Math.random() * wordArray.length);
-        console.log("The index I am accessing is " + randomIndex);
+        //console.log("The index I am accessing is " + randomIndex);
         this.word = wordArray[randomIndex];
         console.log("Your current word is " + this.word);
     }
@@ -290,6 +300,7 @@ class Game {
 
         //Save Score
         this.saveScore(this.score);
+        this.lostGame = 1;
     }
 
     nextGuess() {
@@ -334,11 +345,12 @@ class Game {
         let cells = document.querySelectorAll("table input");
         cells[0].focus();
         //SaveScore
-        if (this.score != 0 && this.score != '--') {
+        if (this.score != 0 && this.score != '--' && this.lostGame != 1) {
             this.saveScore(this.score);
         }
         //Reset Score
         this.score = 0;
+        this.lostGame = 0;
         let updateScore = document.getElementById("currScore");
         updateScore.textContent = '--';
         //Restart Word Count
