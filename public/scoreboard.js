@@ -57,18 +57,13 @@ async function Scoreboard() {
     const globalBodyEl = document.querySelector('#world-scores');
     makeTable(globalBodyEl, globalScores);
 
-    //Create friend's score table
-    // let friendScores = [];
-    // const friendText = localStorage.getItem('friendScores');
-    // if (friendText) {
-    //     friendScores = JSON.parse(friendText);
-    // }
     // const friendBodyEl = document.querySelector('#friend-scores');
 
-    //Create news event websocket place
-    setInterval(() => {
-        addNewEvent(`Milo`, 255);
-      }, 5000);
+    configureWebSocket();
+    // //Create news event websocket place
+    // setInterval(() => {
+    //     addNewEvent(`Milo`, 255);
+    //   }, 5000);
 
 
 }
@@ -115,6 +110,16 @@ function addNewEvent(eventName, eventScore) {
     if (eventTable.rows.length > 5) {
         eventTable.deleteRow(5);
     }
+}
+
+//Functionality for global communication using WebSocket
+async function configureWebSocket() {
+    const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+    socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+    socket.onmessage = async (event) => {
+        const msg = JSON.parse(await event.data.text());
+        addNewEvent(msg.from, msg.value);
+    };
 }
 
 Scoreboard();

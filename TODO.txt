@@ -1,0 +1,4 @@
+1. Create a proxy.js - DONE
+2. Update index.js - DONE
+3. Update scoreborad.js - ???
+4. Update play.js - DONE

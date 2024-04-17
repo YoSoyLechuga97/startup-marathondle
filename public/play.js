@@ -23,6 +23,7 @@ class Game {
     numGuesses;
     lostGame = 0;
     score;
+    socket;
 
     constructor() {
         //Generate a new word
@@ -52,6 +53,9 @@ class Game {
         //Get Player Name
         const playerNameEl = document.querySelector('.player-username');
         playerNameEl.textContent = this.getPlayerName();
+
+        //Configure the WebSocket
+        this.configureWebSocket();
     }
 
     generateWord() {
@@ -396,6 +400,9 @@ class Game {
             //If couldn't do, just obtain them locally
             this.updateScoresLocal(newScore);
         }
+
+        //Let other players know how you did!
+        this.broadcastEvent(this.getPlayerName(), score);
     }
 
     updateScoresLocal(newScore) {
@@ -424,6 +431,21 @@ class Game {
         }
 
         localStorage.setItem('playerScores', JSON.stringify(scores));
+    }
+
+    //Functionallity for global communication using WebSocket
+
+    configureWebSocket() {
+        const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+        this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+    }
+
+    broadcastEvent(playerName, score) {
+        const event = {
+            from: playerName,
+            value: score,
+        };
+        this.socket.send(JSON.stringify(event));
     }
 
 }
