@@ -67,6 +67,6 @@ For this deliverable I added backend endpoints that receives a single score and 
 
 - [x] **Node.js/Express HTTP service** - done!
 - [x] **Static middleware for frontend** - done!
-- [ ] **Calls to third party endpoints** - I used the random quote third party endpoint as part of the welcome in my login page, also-I made a little 'easter egg' where if you pull up the console on the game page, a random Chuck Norris joke is generated!
+- [x] **Calls to third party endpoints** - I used the random quote third party endpoint as part of the welcome in my login page, also-I made a little 'easter egg' where if you pull up the console on the game page, a random Chuck Norris joke is generated!
 - [x] **Backend service endpoints** - Endpoints for scores, get and post to update them between frontend and backend.
 - [x] **Frontend calls service endpoints** - I did this using fetch to grab scores.
