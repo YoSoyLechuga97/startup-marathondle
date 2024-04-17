@@ -64,7 +64,6 @@ const scoreCollection = db.collection('score');
   //Return Personal Scores
   function getPersonalScores(name) {
     //Search scores and return all that player has personally achieved
-    console.log(`Searching for scores from ${name}`);
     const query = {
         score: { $gte: 0 },
         name: name,

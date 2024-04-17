@@ -61,7 +61,7 @@ apiRouter.delete('/auth/logout', (_req, res) => {
 });
 
 //Return user information
-apiRouter.get('/user/:email', async (req, res) => {
+apiRouter.get('/user/:playerTag', async (req, res) => {
   const user = await DB.getUser(req.params.playerTag);
   if (user) { //If the user is found
     const token = req?.cookies.token;
