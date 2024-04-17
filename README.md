@@ -81,3 +81,12 @@ For this deliverable I created a login and associated scores with the user.
 - [x] **existing user** - Stores scores under the same user if they already exist.
 - [x] **Use MongoDB to store credentials** - Stores user, password, and scores!
 - [x] **Restricts functionality** - You cannot save scores or see the scoreboards until you are logged in.
+
+## WebSocket deliverable
+
+For this deliverable I used webSocket to update the scoreboard section with other players scores in real time
+
+- [x] **Backend listens for WebSocket connection** - done!
+- [x] **Frontend makes WebSocket connection** - done!
+- [x] **Data sent over WebSocket connection** - done!
+- [x] **WebSocket data displayed** - After a player finishes a game, their score is immediately sent to the websocket which pushes to a 'news' table on other players scoreboard!
