@@ -1,0 +1,6 @@
+1. Change index.html
+2. Change login.js
+3. Change index.js
+4. Add database.js - DONE
+5. Add dbConfig.json - DONE
+6. Cookie.txt?
