@@ -70,3 +70,14 @@ For this deliverable I added backend endpoints that receives a single score and 
 - [x] **Calls to third party endpoints** - I used the random quote third party endpoint as part of the welcome in my login page, also-I made a little 'easter egg' where if you pull up the console on the game page, a random Chuck Norris joke is generated!
 - [x] **Backend service endpoints** - Endpoints for scores, get and post to update them between frontend and backend.
 - [x] **Frontend calls service endpoints** - I did this using fetch to grab scores.
+
+## DB/Login deliverable
+
+For this deliverable I created a login and associated scores with the user.
+
+- [x] **MongoDB Atlas database created** - done!
+- [x] **Stores data in MongoDB** - done!
+- [x] **User registration** - Creates a new account in the database.
+- [x] **existing user** - Stores scores under the same user if they already exist.
+- [x] **Use MongoDB to store credentials** - Stores user, password, and scores!
+- [x] **Restricts functionality** - You cannot save scores or see the scoreboards until you are logged in.
