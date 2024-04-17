@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <script src="login.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Varela Round"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link
@@ -40,28 +39,55 @@
     </header>
       
     <main>
-      <div class="login">
-      <h1>Welcome!</h1>
-      <p class="introduction">
-        Welcome to Marathondle, see how far you can get!
-      </p>
-        <p>Please login to continue</p>
-        <span>
-          <label for="username"><i class="fa-solid fa-user"> </i></label>
-          <input type="text" id="name" placeholder="Enter Username"/>
-        </span>
-        <p></p>
-        <span>
-          <label for="password"><i class="fa-solid fa-lock"> </i></label>
-          <input type="text" id="password" placeholder="Enter Password"/>
-        </span>
-        <p></p>
-        <span>
-          <button class="btn btn-success" onclick="createUser()">Create</button>
-          <button class="btn btn-success" onclick="loginUser()">Login</button>
-        </span>
-        <p></p>
-        <p class="inspiration"></p>
+      <!--Display when user needs to login-->
+      <div id="loginControls" style="display: none">
+        <div class="login">
+          <h1>Welcome!</h1>
+          <p class="introduction">
+            Welcome to Marathondle, see how far you can get!
+          </p>
+          <p>Please login to continue</p>
+          <span>
+            <label for="name"><i class="fa-solid fa-user"> </i></label>
+            <input type="text" id="name" placeholder="Enter Username"/>
+          </span>
+          <p></p>
+          <span>
+            <label for="password"><i class="fa-solid fa-lock"> </i></label>
+            <input type="password" id="password" placeholder="Enter Password"/>
+          </span>
+          <p></p>
+          <span>
+            <button class="btn btn-success" onclick="createUser()">Create</button>
+            <button class="btn btn-success" onclick="loginUser()">Login</button>
+          </span>
+          <p></p>
+          <p class="inspiration"></p>
+        </div>
+      </div>
+      <!--Display when user is logged in-->
+      <div id="playControls" style="display: none">
+        <div  class="login">
+          <h1>Oh Hey:)</h1>
+          <div id="playerName"></div>
+          <span>
+            <button class="btn btn-success" onclick="play()">Play</button>
+            <button class="btn btn-success" onclick="logout()">Logout</button>
+          </span>
+          <p></p>
+        </div>
+      </div>
+
+      <!--Error Dialog-->
+      <div class="modal fade" id="msgModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content text-dark">
+            <div class="modal-body">error message here</div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
   
@@ -76,5 +102,6 @@
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
     crossorigin="anonymous"
   ></script>
+  <script src="login.js"></script>
   </body>
 </html>

@@ -60,10 +60,29 @@ const scoreCollection = db.collection('score');
     return cursor.toArray();
   }
 
+
+  //Return Personal Scores
+  function getPersonalScores(name) {
+    //Search scores and return all that player has personally achieved
+    console.log(`Searching for scores from ${name}`);
+    const query = {
+        score: { $gte: 0 },
+        name: name,
+    };
+
+    const options = {
+        sort: {score: -1}, //Descending order
+        limit: 5,
+    };
+    const cursor = scoreCollection.find(query, options);
+    return cursor.toArray();
+  }
+
   module.exports = {
     getUser,
     getUserByToken,
     createUser,
     addScore,
     getHighScores,
+    getPersonalScores,
   };

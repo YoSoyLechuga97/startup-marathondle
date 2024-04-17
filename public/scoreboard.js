@@ -7,9 +7,15 @@ async function Scoreboard() {
     //Obtain personal score JSON
     let personalScores = [];
     console.log("Oh hey there :)");
+    const urlPlayerName = encodeURIComponent(playerName);
     try {
         //Get the scores from service
-        const response = await fetch('/api/scores');
+        const response = await fetch(`/api/personalScores?playerTag=${urlPlayerName}`, {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        });
         personalScores = await response.json();
 
         //Save them locally now that we've got them (just in case)
@@ -23,10 +29,33 @@ async function Scoreboard() {
         }
     }
 
+    //Obtain Global scores JSON
+    let globalScores = [];
+    console.log("Oh hey there :)");
+    try {
+        //Get the scores from service
+        const response = await fetch('/api/scores');
+        globalScores = await response.json();
+
+        //Save them locally now that we've got them (just in case)
+        localStorage.setItem('globalScores', JSON.stringify(globalScores));
+    } catch {
+        //If there was a problem getting them from the server
+        console.log("I had to get them locally...");
+        const scoresText = localStorage.getItem('globalScores');
+        if (scoresText) {
+            globalScores = JSON.parse(scoresText);
+        }
+    }
+
     
     //Create player's personal scores table
     const playerBodyEl = document.querySelector('#personal-scores');
     makeTable(playerBodyEl, personalScores);
+
+    //Create global score table
+    const globalBodyEl = document.querySelector('#world-scores');
+    makeTable(globalBodyEl, globalScores);
 
     //Create friend's score table
     // let friendScores = [];

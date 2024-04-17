@@ -27,7 +27,7 @@ app.use(`/api`, apiRouter);
 
 //Create token for a new user
 apiRouter.post('/auth/create', async (req, res) => {
-  if (await DB.getUser(req.body.email)) {
+  if (await DB.getUser(req.body.playerTag)) {
     res.status(409).send({ msg: 'This Username is Already Being Used' });
   } else {
     const user = await DB.createUser(req.body.playerTag, req.body.password);
@@ -85,9 +85,20 @@ secureApiRouter.use(async (req, res, next) => {
   }
 });
 
-//Obtain scores
+//Obtain global scores
 secureApiRouter.get('/scores', async (req, res) => {
   const scores = await DB.getHighScores();
+  res.send(scores);
+});
+
+//Obtain personal scores
+secureApiRouter.get('/personalScores', async (req, res) => {
+  const playerTag = req.query.playerTag;
+  if(!playerTag) {
+    return res.status(400).json({ error: 'Missing playerTag' });
+  }
+  
+  const scores = await DB.getPersonalScores(playerTag);
   res.send(scores);
 });
 

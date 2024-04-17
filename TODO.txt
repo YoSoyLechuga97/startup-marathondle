@@ -1,5 +1,6 @@
-1. Change index.html
-2. Change login.js 
+1. Change index.html - DONE
+1.5 Change index.html for logout
+2. Change login.js
 3. Change index.js - DONE
 4. Add database.js - DONE
 5. Add dbConfig.json - DONE
